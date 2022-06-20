@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wordle Odds</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <main class="container mx-auto">
+        <div class="pt-10">
+            <div id="guesses" class="flex flex-col space-y-2">
+                <input type="text" name="guess-1" id="guess-1" class="border border-sky-900">
+                <input type="text" name="guess-2" id="guess-2" class="border border-sky-900">
+                <input type="text" name="guess-3" id="guess-3" class="border border-sky-900">
+                <input type="text" name="guess-4" id="guess-4" class="border border-sky-900">
+                <input type="text" name="guess-5" id="guess-5" class="border border-sky-900">
+                <input type="text" name="guess-6" id="guess-6" class="border border-sky-900">
+            </div>
+            <div id="options">
+                <input type="checkbox" name="answers-only" id="answers-only"></input>
+                <label for="answers-only">Answers Only</label>
+            </div>
+            <button type="button" id="generate" class="p-2 bg-sky-900 hover:bg-sky-700 text-white rounded-lg">Generate</button>
+        </div>
+        <div id="possible" class="pt-10"></div>
+    </main>
+    <script src="main.js"></script>
+</body>
+</html>
