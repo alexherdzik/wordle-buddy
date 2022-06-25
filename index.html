@@ -4,25 +4,63 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wordle Friend</title>
+    <title>Wordle Buddy</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/ce708e9fb9.js" crossorigin="anonymous"></script>
 </head>
-<body>
+<body class="bg-stone-100">
+    <header class="h-12 flex justify-center items-center bg-stone-900">
+        <div class="text-3xl text-white font-serif">Wordle Buddy</div>
+    </header>
     <main class="container mx-auto">
-        <div class="pt-10">
-            <div id="guesses" class="flex flex-col space-y-2">
-                <input type="text" name="guess-1" id="guess-1" class="border border-sky-900">
-                <input type="text" name="guess-2" id="guess-2" class="border border-sky-900">
-                <input type="text" name="guess-3" id="guess-3" class="border border-sky-900">
-                <input type="text" name="guess-4" id="guess-4" class="border border-sky-900">
-                <input type="text" name="guess-5" id="guess-5" class="border border-sky-900">
-                <input type="text" name="guess-6" id="guess-6" class="border border-sky-900">
-            </div>
-            <div id="options">
-                <input type="checkbox" name="answers-only" id="answers-only"></input>
-                <label for="answers-only">Answers Only</label>
-            </div>
-            <button type="button" id="generate" class="p-2 bg-sky-900 hover:bg-sky-700 text-white rounded-lg">Generate</button>
+        <div class="pt-4">
+            <form>
+                <div class="flex flex-col space-y-2 justify-center items-center">
+                    <div id="guesses" class="flex flex-col space-y-2">
+                        <div class="flex items-stretch">
+                            <div class="flex">
+                                <span class="flex items-center px-4 border border-r-0 border-sky-900 rounded-l bg-stone-300 text-xl">1</span>
+                            </div>
+                            <input type="text" name="guess-1" id="guess-1" class="w-24 px-2 py-2 border border-sky-900" maxlength="5" minlength="5">
+                        </div>
+                        <div class="flex items-stretch">
+                            <div class="flex">
+                                <span class="flex items-center px-4 border border-r-0 border-sky-900 rounded-l bg-stone-300 text-xl">2</span>
+                            </div>
+                            <input type="text" name="guess-2" id="guess-2" class="w-24 px-2 py-2 border border-sky-900" maxlength="5" minlength="5">
+                        </div>
+                        <div class="flex items-stretch">
+                            <div class="flex">
+                                <span class="flex items-center px-4 border border-r-0 border-sky-900 rounded-l bg-stone-300 text-xl">3</span>
+                            </div>
+                            <input type="text" name="guess-3" id="guess-3" class="w-24 px-2 py-2 border border-sky-900" maxlength="5" minlength="5">
+                        </div>
+                        <div class="flex items-stretch">
+                            <div class="flex">
+                                <span class="flex items-center px-4 border border-r-0 border-sky-900 rounded-l bg-stone-300 text-xl">4</span>
+                            </div>
+                            <input type="text" name="guess-4" id="guess-4" class="w-24 px-2 py-2 border border-sky-900" maxlength="5" minlength="5">
+                        </div>
+                        <div class="flex items-stretch">
+                            <div class="flex">
+                                <span class="flex items-center px-4 border border-r-0 border-sky-900 rounded-l bg-stone-300 text-xl">5</span>
+                            </div>
+                            <input type="text" name="guess-5" id="guess-5" class="w-24 px-2 py-2 border border-sky-900" maxlength="5" minlength="5">
+                        </div>
+                        <div class="flex items-stretch">
+                            <div class="flex">
+                                <span class="flex items-center px-4 border border-r-0 border-sky-900 rounded-l bg-stone-300 text-xl">6</span>
+                            </div>
+                            <input type="text" name="guess-6" id="guess-6" class="w-24 px-2 py-2 border border-sky-900" maxlength="5" minlength="5">
+                        </div>
+                    </div>
+                    <div id="options">
+                        <input type="checkbox" name="answers-only" id="answers-only"></input>
+                        <label for="answers-only">Answers Only</label>
+                    </div>
+                    <button type="button" id="generate" class="px-4 py-2 bg-sky-900 hover:bg-sky-700 text-white rounded-lg">Generate</button>
+                </div>
+            </form>
         </div>
         <div id="possible" class="pt-10"></div>
     </main>

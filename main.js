@@ -80,14 +80,14 @@ document.getElementById('generate').addEventListener('click', () => {
             possOutput.appendChild(guessNode);
         });
         */
-
-        const info = getGuessInfo(guess.value, ans);
+        const guessLowerCase = guess.value.toLowerCase();
+        const info = getGuessInfo(guessLowerCase, ans);
         poss = getPossibleAnswers(info, poss);
         game.possibleAnswers.push(poss);
 
         const node = document.createElement('p');
         node.classList.add('flex', 'space-x-px')
-        const charClassMap = getCharClasses(guess.value, ans);
+        const charClassMap = getCharClasses(guessLowerCase, ans);
         for (let i = 0; i < guess.value.length; i++) {
             const span = document.createElement('span');
             const spanText = document.createTextNode(guess.value[i].toUpperCase());
