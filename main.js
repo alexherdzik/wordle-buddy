@@ -85,27 +85,69 @@ document.getElementById('generate').addEventListener('click', () => {
         poss = getPossibleAnswers(info, poss);
         game.possibleAnswers.push(poss);
 
-        const node = document.createElement('p');
-        node.classList.add('flex', 'space-x-px')
+        // CHAR START
+        const charNode = document.createElement('p');
+        charNode.classList.add('flex', 'space-x-px')
+        
         const charClassMap = getCharClasses(guessLowerCase, ans);
         for (let i = 0; i < guess.value.length; i++) {
+            //SPAN START
             const span = document.createElement('span');
             const spanText = document.createTextNode(guess.value[i].toUpperCase());
             span.appendChild(spanText);
             span.classList.add(charClassMap.get(i), ...tileClasses);
-            node.appendChild(span);
+            charNode.appendChild(span);
+            //SPAN END
         }
+        //CHAR END
+
+        // REMAINING START
+        const remainNode = document.createElement('span');
+        remainNode.classList.add('ml-2');
+        const remainTextNode = document.createTextNode(`(${poss.length})`);
+        remainNode.appendChild(remainTextNode);
+        // REMAINING END
+
+        // CHEVRON START
+        const chevronNode = document.createElement('span');
+        chevronNode.classList.add('ml-auto', 'transition-transform');
+        chevronNode.innerHTML = '&#10095';
+        // CHEVRON END
+
+        // HEADER START
+        const headerNode = document.createElement('div');
+        headerNode.addEventListener('click', e => {
+            e.target.querySelector('.transition-transform').classList.toggle('rotate-90');
+            e.target.nextElementSibling.classList.toggle('hidden');
+        });
+        headerNode.classList.add('flex', 'p-2', 'bg-stone-300', 'border-t', 'border-x', 'border-stone-400');
+        headerNode.appendChild(charNode);
+        headerNode.appendChild(remainNode);
+        headerNode.appendChild(chevronNode);
+        // HEADER END
 
         //const text = document.createTextNode(`Guess: ${guess.value} ${Math.round(game.calcPercentageEliminated(index + 1))}%`);
         //node.appendChild(text);
 
-        possOutput.appendChild(node);
-
+        // POSS ANSWER START
         const ansNode = document.createElement('p');
-        const ansText = document.createTextNode(`${poss.sort().join(', ')} (${poss.length})`);
+        const ansText = document.createTextNode(`${poss.sort().join(', ').toUpperCase()}`);
         ansNode.appendChild(ansText);
+        // POSS ANSWER END
 
-        possOutput.appendChild(ansNode);
+        // ANS CONTAINER START
+        const ansContainerNode = document.createElement('div');
+        ansContainerNode.classList.add('hidden', 'px-2', 'pb-2');
+        ansContainerNode.appendChild(ansNode);
+        // ANS CONTAINER END
+
+        // CONTAINER START
+        const containerNode = document.createElement('div');
+        containerNode.appendChild(headerNode);
+        containerNode.appendChild(ansContainerNode);
+        // CONTAINER END
+
+        possOutput.appendChild(containerNode);
     });
 });
 
