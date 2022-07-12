@@ -110,14 +110,14 @@ document.getElementById('generate').addEventListener('click', () => {
 
         // CHEVRON START
         const chevronNode = document.createElement('span');
-        chevronNode.classList.add('ml-auto', 'transition-transform');
+        chevronNode.classList.add('ml-auto', 'transition-transform', 'rotate-90');
         chevronNode.innerHTML = '&#10095';
         // CHEVRON END
 
         // HEADER START
         const headerNode = document.createElement('div');
         headerNode.addEventListener('click', e => {
-            e.target.querySelector('.transition-transform').classList.toggle('rotate-90');
+            e.target.querySelector('.transition-transform').classList.toggle('-rotate-90');
             e.target.nextElementSibling.classList.toggle('hidden');
         });
         headerNode.classList.add('flex', 'p-2', 'bg-stone-300', 'border-t', 'border-x', 'border-stone-400');
