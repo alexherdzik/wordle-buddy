@@ -104,8 +104,14 @@ document.getElementById('generate').addEventListener('click', () => {
         // REMAINING START
         const remainNode = document.createElement('span');
         remainNode.classList.add('ml-2');
-        const remainText = guessLowerCase === ans ? '(★)' : `(${poss.length})`;
-        const remainTextNode = document.createTextNode(remainText);
+        let remainTextNode;
+        if (guessLowerCase === ans) {
+            remainTextNode = document.createTextNode('★');
+            remainNode.classList.add('text-yellow-600');
+        }
+        else {
+            remainTextNode = document.createTextNode(`(${poss.length})`);
+        }
         remainNode.appendChild(remainTextNode);
         // REMAINING END
 
