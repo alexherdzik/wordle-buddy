@@ -104,7 +104,8 @@ document.getElementById('generate').addEventListener('click', () => {
         // REMAINING START
         const remainNode = document.createElement('span');
         remainNode.classList.add('ml-2');
-        const remainTextNode = document.createTextNode(`(${poss.length})`);
+        const remainText = guessLowerCase === ans ? '(★)' : `(${poss.length})`;
+        const remainTextNode = document.createTextNode(remainText);
         remainNode.appendChild(remainTextNode);
         // REMAINING END
 
