@@ -183,7 +183,8 @@ function createInfo() {
 
     return {
         positionOptions: createPositionOptionsMap(),
-        knownCharCount: new Map(),
+        minCharCount: new Map(),
+        maxCharCount: new Map(),
     }
     
 }
@@ -219,18 +220,16 @@ function getGuessInfo(guess, answer = getAnswer()) {
 
     for(const [char, positions] of guessMap) {
         if (answerMap.has(char)) {
-            info.knownCharCount.set(char, Math.min(positions.size, answerMap.get(char).size));
-        }
-        else {
-            //info.knownCharCount.set(char, 0);
+            info.minCharCount.set(char, Math.min(positions.size, answerMap.get(char).size));
+            if (positions.size > answerMap.get(char).size) {
+                info.maxCharCount.set(char, answerMap.get(char).size);
+            }
         }
     }
-
     return info;
 }
 
 function getPossibleAnswers(info, answers) {
-
     return answers.filter(answer => {
         const answerArr = [...answer];
 
@@ -240,8 +239,12 @@ function getPossibleAnswers(info, answers) {
 
         const answerMap = stringToMap(answer);
 
-        for(const [char, count] of info.knownCharCount) {
+        for(const [char, count] of info.minCharCount) {
             if (!answerMap.has(char) || answerMap.get(char).size < count) return false;
+        }
+
+        for (const [char, count] of info.maxCharCount) {
+            if (answerMap.get(char).size > count) return false;
         }
 
         return true;
