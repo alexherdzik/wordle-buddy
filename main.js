@@ -19,6 +19,7 @@ document.addEventListener('keydown', e => {
 });
 */
 
+const answer = document.getElementById('answer');
 const guesses = document.querySelectorAll('#guesses input');
 const possOutput = document.getElementById('possible');
 
@@ -26,11 +27,11 @@ const options = (() => {
     const _answersOnlyCheckbox = document.querySelector('#answers-only');
     let _answersOnly = _answersOnlyCheckbox.checked;
 
-    const getAnswersOnly = function() {
+    const getAnswersOnly = function () {
         return _answersOnly;
     }
 
-    const setAnswersOnly = function() {
+    const setAnswersOnly = function () {
         _answersOnly = _answersOnlyCheckbox.checked;
     }
 
@@ -45,7 +46,7 @@ const options = (() => {
 
 function Game() {
     this.possibleAnswers = []
-    this.calcPercentageEliminated = function(guessNumber) {
+    this.calcPercentageEliminated = function (guessNumber) {
         return ((this.possibleAnswers[guessNumber - 1].length - this.possibleAnswers[guessNumber].length) / this.possibleAnswers[guessNumber - 1].length) * 100;
     }
 }
@@ -88,7 +89,7 @@ document.getElementById('generate').addEventListener('click', () => {
         // CHAR START
         const charNode = document.createElement('p');
         charNode.classList.add('flex', 'space-x-px')
-        
+
         const charClassMap = getCharClasses(guessLowerCase, ans);
         for (let i = 0; i < guess.value.length; i++) {
             //SPAN START
@@ -165,7 +166,8 @@ function getDaysFromStart(compareDate = new Date()) {
 }
 
 function getAnswer() {
-    return answers[getDaysFromStart()];
+    return answer.value;
+    //return answers[getDaysFromStart()];
 }
 
 function createPositionOptionsMap() {
@@ -186,7 +188,7 @@ function createInfo() {
         minCharCount: new Map(),
         maxCharCount: new Map(),
     }
-    
+
 }
 
 function getGuessInfo(guess, answer = getAnswer()) {
@@ -218,7 +220,7 @@ function getGuessInfo(guess, answer = getAnswer()) {
         }
     });
 
-    for(const [char, positions] of guessMap) {
+    for (const [char, positions] of guessMap) {
         if (answerMap.has(char)) {
             info.minCharCount.set(char, Math.min(positions.size, answerMap.get(char).size));
             if (positions.size > answerMap.get(char).size) {
@@ -239,7 +241,7 @@ function getPossibleAnswers(info, answers) {
 
         const answerMap = stringToMap(answer);
 
-        for(const [char, count] of info.minCharCount) {
+        for (const [char, count] of info.minCharCount) {
             if (!answerMap.has(char) || answerMap.get(char).size < count) return false;
         }
 
@@ -272,10 +274,10 @@ function getCharClasses(guess, answer) {
         //present
         if (unpairedChars.answer.has(guess[i])) {
             charClasses.set(i, presentClass);
-            
+
             //remove from unpaired
             unpairedChars.answer.get(guess[i]).shift();
-            
+
             if (unpairedChars.answer.get(guess[i]).length === 0) {
                 unpairedChars.answer.delete(guess[i]);
             }
@@ -297,7 +299,7 @@ function getCharClasses(guess, answer) {
             if (unpairedChars.guess.get(answer[i]).length === 0) {
                 unpairedChars.guess.delete(answer[i]);
             }
-        } 
+        }
         else {
             if (!unpairedChars.answer.has(answer[i])) {
                 unpairedChars.answer.set(answer[i], []);
