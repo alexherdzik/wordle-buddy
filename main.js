@@ -166,7 +166,7 @@ function getDaysFromStart(compareDate = new Date()) {
 }
 
 function getAnswer() {
-    return answer.value;
+    return answer.value.toLowerCase();
     //return answers[getDaysFromStart()];
 }
 
